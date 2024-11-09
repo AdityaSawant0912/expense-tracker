@@ -52,7 +52,7 @@ const LedgerSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     }
-})
+}, { timestamps: true })
 
 export default mongoose.model.Ledger || mongoose.model("Ledger", LedgerSchema);
 

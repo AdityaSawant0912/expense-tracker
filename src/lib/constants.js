@@ -9,3 +9,14 @@ export const TYPE_OF_ACCOUNTS = [
     'Asset account',
     'Liablities account'
 ]
+
+export const DIRECTIONS = {
+    credit: 'CREDIT',
+    debit: 'DEBIT'
+}
+
+export const TRANSACTION_TYPES = {
+    transaction: 'TRANSACTION',
+    transfer: 'TRANSFER',
+    split: 'SPLIT'
+}
