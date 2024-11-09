@@ -2,12 +2,12 @@ import mongoose from "mongoose";
 
 const UserSchema = new mongoose.Schema({
   name: {
-      typeof: String,
+      type: String,
       required: [true, "Please provide a name for this user."],
       maxlength: [100, "Name cannot be more than 100 characters."]
   },
   email: {
-      typeof: String,
+      type: String,
       unique: [true, "User with Email {VALUE} already exists"],
       required: [true, "Please provide an email for this user."],
       maxlength: [150, "Email cannot be more than 150 characters."],
@@ -19,11 +19,11 @@ const UserSchema = new mongoose.Schema({
       }
   },
   image: {
-      typeof: String,
+      type: String,
       required: [true, "Please provide an image for this user."]
   },
   emailVerified: {
-      typeof: Boolean,
+      type: Boolean,
       default: false,
   }
 });
