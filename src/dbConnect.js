@@ -1,7 +1,5 @@
-
 // const { MongoClient, ServerApiVersion } = require('mongodb');
 // const uri = process.env.MONGODB_URI
-
 // // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 // const client = new MongoClient(uri, {
 //   serverApi: {
@@ -10,27 +8,19 @@
 //     deprecationErrors: true,
 //   }
 // });
-
 // export default client
-
-import mongoose from "mongoose";
-
+import mongoose from 'mongoose';
 global.mongoose = global.mongoose || mongoose;
-
 const MONGODB_URI = process.env.MONGODB_URI;
-
 if (!MONGODB_URI) {
   throw new Error(
-    "Please define the MONGODB_URI environment variable inside .env.local",
+    'Please define the MONGODB_URI environment variable inside .env.local',
   );
 }
-
 let cached = global.mongoose;
-
 if (!cached) {
   cached = global.mongoose = { conn: null, promise: null };
 }
-
 async function dbConnect() {
   if (cached.conn) {
     return cached.conn;
@@ -49,8 +39,6 @@ async function dbConnect() {
     cached.promise = null;
     throw e;
   }
-
   return cached.conn;
 }
-
 export default dbConnect;

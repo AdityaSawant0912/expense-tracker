@@ -1,45 +1,41 @@
-"use client";
-
-import React, { useState } from "react";
-import { Search } from "lucide-react";
-import { Button } from "@/components/ui/button";
+'use client';
+import React, { useState } from 'react';
+import { Search } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover";
-
-import { Checkbox } from "@/components/ui/checkbox";
-
+} from '@/components/ui/popover';
+import { Checkbox } from '@/components/ui/checkbox';
 export function SearchButton() {
   const [selectedOptions, setSelectedOptions] = useState([]);
   const searchOptions = [
     {
-      id: "category",
-      label: "Category",
+      id: 'category',
+      label: 'Category',
     },
     {
-      id: "amount",
-      label: "Amount",
+      id: 'amount',
+      label: 'Amount',
     },
     {
-      id: "notes",
-      label: "Notes",
+      id: 'notes',
+      label: 'Notes',
     },
     {
-      id: "payee/payer",
-      label: "Payee/Payer",
+      id: 'payee/payer',
+      label: 'Payee/Payer',
     },
     {
-      id: "paymentMethod",
-      label: "Payment Method",
+      id: 'paymentMethod',
+      label: 'Payment Method',
     },
     {
-      id: "date",
-      label: "Date",
+      id: 'date',
+      label: 'Date',
     },
   ];
-
   function handleChange(checked, selectedId) {
     if (checked) {
       setSelectedOptions((prev) => [...prev, selectedId]);
@@ -48,11 +44,10 @@ export function SearchButton() {
     }
     console.log(selectedOptions);
   }
-
   return (
     <Popover >
       <PopoverTrigger asChild>
-        <Button variant="outline" size="icon" className='mr-4'>
+        <Button variant="outline" size="icon" className="mr-4">
           <Search className="h-[1.2rem] w-[1.2rem]" />
           <span className="sr-only">Search</span>
         </Button>

@@ -1,10 +1,9 @@
-import SidebarToggle from "../sidebar/sidebar-toggle-button";
-import LedgerTitle from "./ledger-title";
-import { ModeToggle } from "@/components/theme/theme-button";
-import React from "react";
-import { SearchButton } from "./search-button";
-import TemplateButton from "./template-button";
-
+import SidebarToggle from '../sidebar/sidebar-toggle-button';
+import LedgerTitle from './ledger-title';
+import { ModeToggle } from '@/components/theme/theme-button';
+import React from 'react';
+import { SearchButton } from './search-button';
+import TemplateButton from './template-button';
 function Navbar() {
   return (
     <nav className="sticky top-0 z-10 bg-background text-foreground shadow dark:shadow-dark inset-x-0">
@@ -21,5 +20,4 @@ function Navbar() {
     </nav>
   );
 }
-
 export default Navbar;
