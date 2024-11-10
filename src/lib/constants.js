@@ -1,6 +1,9 @@
 export const CURRENCIES = [
-    {name: 'Indian Rupee', code: 'INR'}
+    {name: 'Indian Rupee', code: 'INR', symbol: '₹'}
 ]
+export function getCurrencySymbol(code) {
+    return CURRENCIES.find((cur)=> cur.code === code).symbol
+}
 
 export const TYPE_OF_ACCOUNTS = [
     'Cash account',
@@ -12,7 +15,8 @@ export const TYPE_OF_ACCOUNTS = [
 
 export const DIRECTIONS = {
     credit: 'CREDIT',
-    debit: 'DEBIT'
+    debit: 'DEBIT',
+    transfer:'TRANSFER'
 }
 
 export const TRANSACTION_TYPES = {
