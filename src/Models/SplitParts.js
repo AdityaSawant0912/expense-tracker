@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { DIRECTIONS, TRANSACTION_TYPES } from '@/lib/constants';
+import { DIRECTIONS } from '@/lib/constants';
 let Schema = mongoose.Schema;
 const SplitPartsSchema = new mongoose.Schema({
   userId: {

@@ -12,7 +12,7 @@ const UserSchema = new mongoose.Schema({
     maxlength: [150, 'Email cannot be more than 150 characters.'],
     validate: {
       validator: value =>{
-        return /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(v);
+        return /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(value);
       },
       message: prop => `${prop} is not a valid email!`
     }

@@ -1,6 +1,5 @@
 import React from 'react';
 import { SidebarTrigger } from '@/components/ui/sidebar';
-import { Button } from '@/components/ui/button';
 function SidebarToggle() {
   return (
     <>
