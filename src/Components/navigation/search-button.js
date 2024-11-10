@@ -42,7 +42,6 @@ export function SearchButton() {
     } else {
       setSelectedOptions((prev) => prev.filter((id) => id != selectedId));
     }
-    console.log(selectedOptions);
   }
   return (
     <Popover >

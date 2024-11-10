@@ -4,7 +4,7 @@ import {
   TableCell,
   TableRow,
 } from '@/components/ui/table';
-import Amount from '../amount';
+import Amount from '../common/amount';
 import {CirclePlus, CircleMinus, ArrowRightLeft } from 'lucide-react';
 const invoices = [
   {
