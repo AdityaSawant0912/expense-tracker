@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "lint": "eslint . --fix",
-    "dev": "npm run lint && next dev --turbopack",
+    "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start"
   },
@@ -21,6 +21,7 @@
     "@radix-ui/react-visually-hidden": "^1.1.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "embla-carousel-react": "^8.3.1",
     "lucide-react": "^0.456.0",
     "mongodb": "^6.10.0",
     "mongoose": "^8.8.1",

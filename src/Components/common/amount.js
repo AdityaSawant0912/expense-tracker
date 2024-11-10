@@ -1,6 +1,7 @@
 import React from 'react';
 import { getCurrencySymbol, DIRECTIONS } from '@/lib/constants';
 function Amount({
+  className,
   value,
   direction = 'white',
   currencyCode,
@@ -21,7 +22,7 @@ function Amount({
   // Default to white if direction is not in the map
   const textColorClass = directionClassMap[direction] || 'text-white';
   return (
-    <p className={`${textColorClass} flex gap-2 m-auto`}>
+    <p className={`${textColorClass} flex gap-2 m-auto ${className}`}>
       {prefixIcon ? prefixIcon : <></>}
       {direction === DIRECTIONS.debit || !positive ? '-' : ''}
       {getCurrencySymbol(currencyCode)}

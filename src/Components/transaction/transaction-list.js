@@ -1,53 +1,92 @@
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableRow,
-} from '@/components/ui/table';
+import { Table, TableBody } from '@/components/ui/table';
 import Amount from '../common/amount';
-import {CirclePlus, CircleMinus, ArrowRightLeft } from 'lucide-react';
-const invoices = [
+import { CirclePlus, CircleMinus, ArrowRightLeft } from 'lucide-react';
+import TransactionRow from './transaction-row';
+
+const transactions = [
   {
-    invoice: 'INV001',
-    paymentStatus: 'Paid',
-    totalAmount: '$250.00',
+    _id: '64bfa12345abc123de678810',
+    userId: '64bfa12345abc123de678910',
+    typeOfTransaction: 'TRANSACTION',
+    ledgerId: '64bfa12345abc123de678911',
+    direction: 'DEBIT',
+    amount: 150.75,
+    datetime: '2024-11-15T14:30:00Z',
+    otherParty: 'John Doe',
+    category: {
+      _id: '64bfa12345abc123de678913',
+      userId: '64bfa12345abc123de678910',
+      icon: 'household_icon',
+      parent: '64bfa12345abc123de678912',
+      label: 'Household Supplies',
+    },
+    tags: [
+      {
+        _id: '64bfa12345abc123de678914',
+        userId: '64bfa12345abc123de678910',
+        label: 'Weekly Expenses',
+      },
+    ],
+    notes: 'Grocery shopping at SuperMart',
     paymentMethod: 'Credit Card',
   },
   {
-    invoice: 'INV002',
-    paymentStatus: 'Pending',
-    totalAmount: '$150.00',
-    paymentMethod: 'PayPal',
-  },
-  {
-    invoice: 'INV003',
-    paymentStatus: 'Unpaid',
-    totalAmount: '$350.00',
+    _id: '64bfa12345abc123de678811',
+    userId: '64bfa12345abc123de678910',
+    typeOfTransaction: 'TRANSACTION',
+    ledgerId: '64bfa12345abc123de678911',
+    direction: 'CREDIT',
+    amount: 1200.0,
+    datetime: '2024-11-16T09:00:00Z',
+    otherParty: 'Jane Smith',
+    category: {
+      _id: '64bfa12345abc123de678915',
+      userId: '64bfa12345abc123de678910',
+      icon: 'salary_icon',
+      parent: null,
+      label: 'Income',
+    },
+    tags: [
+      {
+        _id: '64bfa12345abc123de678916',
+        userId: '64bfa12345abc123de678910',
+        label: 'Salary',
+      },
+      {
+        _id: '64bfa12345abc123de678917',
+        userId: '64bfa12345abc123de678910',
+        label: 'November',
+      },
+    ],
+    notes: 'Salary for November',
     paymentMethod: 'Bank Transfer',
   },
   {
-    invoice: 'INV004',
-    paymentStatus: 'Paid',
-    totalAmount: '$450.00',
-    paymentMethod: 'Credit Card',
-  },
-  {
-    invoice: 'INV005',
-    paymentStatus: 'Paid',
-    totalAmount: '$550.00',
-    paymentMethod: 'PayPal',
-  },
-  {
-    invoice: 'INV006',
-    paymentStatus: 'Pending',
-    totalAmount: '$200.00',
-    paymentMethod: 'Bank Transfer',
-  },
-  {
-    invoice: 'INV007',
-    paymentStatus: 'Unpaid',
-    totalAmount: '$300.00',
-    paymentMethod: 'Credit Card',
+    _id: '64bfa12345abc123de678812',
+    userId: '64bfa12345abc123de678910',
+    typeOfTransaction: 'TRANSFER',
+    fromLedger: '64bfa12345abc123de678911',
+    toLedger: '64bfa12345abc123de678918',
+    direction: 'TRANSFER',
+    amount: 500.0,
+    datetime: '2024-11-17T18:45:00Z',
+    otherParty: 'Self',
+    category: {
+      _id: '64bfa12345abc123de678919',
+      userId: '64bfa12345abc123de678910',
+      icon: 'savings_icon',
+      parent: null,
+      label: 'Savings',
+    },
+    tags: [
+      {
+        _id: '64bfa12345abc123de678920',
+        userId: '64bfa12345abc123de678910',
+        label: 'Monthly Savings',
+      },
+    ],
+    notes: 'Transfer to savings account',
+    paymentMethod: 'Mobile App',
   },
 ];
 const openingBalance = 348.0;
@@ -61,23 +100,38 @@ export function TransactionList() {
       <div className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted flex flex-col">
         <h1 className="m-auto text-xl">Total</h1>
         <span className="m-auto flex gap-2">
-          <Amount value={openingBalance} currencyCode={currencyCode}/> - <Amount value={totalExpense} currencyCode={currencyCode}/> = <Amount value={openingBalance - totalExpense} currencyCode={currencyCode}/>
+          <Amount value={openingBalance} currencyCode={currencyCode} /> -{' '}
+          <Amount value={totalExpense} currencyCode={currencyCode} /> ={' '}
+          <Amount
+            value={openingBalance - totalExpense}
+            currencyCode={currencyCode}
+          />
         </span>
         <span className="m-auto flex gap-6">
-          <Amount value={totalIncome} direction="CREDIT" currencyCode={currencyCode} prefixIcon={<CirclePlus className="w-5 h-5 my-auto"/>}/> <Amount value={totalExpense} direction="DEBIT" currencyCode={currencyCode} prefixIcon={<CircleMinus className="w-5 h-5 my-auto"/>}/> <Amount value={totalTransfer} direction="TRANSFER" currencyCode={currencyCode} prefixIcon={<ArrowRightLeft className="w-5 h-5 my-auto"/>}/>
+          <Amount
+            value={totalIncome}
+            direction="CREDIT"
+            currencyCode={currencyCode}
+            prefixIcon={<CirclePlus className="w-5 h-5 my-auto" />}
+          />{' '}
+          <Amount
+            value={totalExpense}
+            direction="DEBIT"
+            currencyCode={currencyCode}
+            prefixIcon={<CircleMinus className="w-5 h-5 my-auto" />}
+          />{' '}
+          <Amount
+            value={totalTransfer}
+            direction="TRANSFER"
+            currencyCode={currencyCode}
+            prefixIcon={<ArrowRightLeft className="w-5 h-5 my-auto" />}
+          />
         </span>
       </div>
       <Table>
         <TableBody className="border-b">
-          {invoices.map((invoice) => (
-            <TableRow key={invoice.invoice}>
-              <TableCell className="font-medium">{invoice.invoice}</TableCell>
-              <TableCell>{invoice.paymentStatus}</TableCell>
-              <TableCell>{invoice.paymentMethod}</TableCell>
-              <TableCell className="text-right">
-                {invoice.totalAmount}
-              </TableCell>
-            </TableRow>
+          {transactions.map((transaction) => (
+            <TransactionRow transaction={transaction} key={transaction._id} />
           ))}
         </TableBody>
       </Table>
