@@ -1,14 +1,12 @@
 import React from 'react'
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
-import { AppSidebar } from "@/components/app-sidebar"
-
+import { AppSidebar } from "@/components/sidebar/app-sidebar"
 const AppLayout = ({ children }) => {
   return (
     <>
     <SidebarProvider>
       <AppSidebar />
-      <main>
-        <SidebarTrigger />
+      <main className='w-full'>
         {children}
       </main>
     </SidebarProvider>

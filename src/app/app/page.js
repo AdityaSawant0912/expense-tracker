@@ -1,13 +1,11 @@
 import React from "react";
-import { ModeToggle } from "@/components/theme-button";
+import Navbar from "@/components/navigation/navbar";
 
 export default function App() {
   return (
     <>
+      <Navbar />
       <div>App</div>
-      <ModeToggle />
     </>
   );
 }
-
-
